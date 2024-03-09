@@ -1,0 +1,53 @@
+import java.util.Scanner;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
+public class Chat {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Chatbot: Hello! How can I assist you today?");
+        
+        while (true) {
+            String input = scanner.nextLine();
+            String response = getResponse(input);
+            System.out.println("Chatbot: " + response);
+        }
+    }
+    
+    public static String getResponse(String input) {
+        input = input.toLowerCase(); // Convert input to lowercase for easier comparison
+        
+        // Check for different user inputs and provide appropriate responses
+        if (input.contains("date")) {
+            // Respond with the current date
+            return "The current date is: " + getCurrentDate();
+        } else if (input.contains("time")) {
+            // Respond with the current time
+            return "The current time is: " + getCurrentTime();
+        } else if (input.contains("hello") || input.contains("hi")) {
+            // Respond with "Hi!" and the current date and time
+            return "Hi! The current date and time is: " + getCurrentDateTime();
+        } else {
+            // Default response for unrecognized input
+            return "I'm sorry, I didn't understand that.";
+        }
+    }
+    
+    public static String getCurrentDate() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        return formatter.format(date);
+    }
+    
+    public static String getCurrentTime() {
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+        Date date = new Date();
+        return formatter.format(date);
+    }
+    
+    public static String getCurrentDateTime() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        return formatter.format(date);
+    }
+}
